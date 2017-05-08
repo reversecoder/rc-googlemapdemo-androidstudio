@@ -3,7 +3,6 @@ package com.reversecoder.googlemap.demo.activity;
 import android.location.Location;
 import android.os.Bundle;
 
-import com.google.android.gms.location.places.Place;
 import com.reversecoder.googlemap.demo.R;
 
 public class MainActivity extends BaseMapActivity {
@@ -204,11 +203,6 @@ public class MainActivity extends BaseMapActivity {
 //            }
 //        }
 //    }
-
-
-    @Override
-    public void onSearchedPlaceItemSelected(Place place) {
-    }
 
     @Override
     public void onGoogleClientApiConnected() {

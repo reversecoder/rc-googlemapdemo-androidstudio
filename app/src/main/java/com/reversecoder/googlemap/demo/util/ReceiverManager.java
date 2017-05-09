@@ -9,6 +9,9 @@ import android.util.Log;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @author Md. Rashadul Alam
+ */
 public class ReceiverManager {
 
     private static List<BroadcastReceiver> receivers = new ArrayList<BroadcastReceiver>();

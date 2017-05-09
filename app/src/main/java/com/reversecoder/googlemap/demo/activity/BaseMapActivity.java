@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.IntentSender;
 import android.content.pm.PackageManager;
+import android.location.Location;
 import android.location.LocationManager;
 import android.os.Build;
 import android.os.Bundle;
@@ -40,9 +41,16 @@ import com.google.android.gms.location.places.ui.PlaceAutocomplete;
 import com.google.android.gms.location.places.ui.PlaceSelectionListener;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.model.BitmapDescriptor;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
+import com.reversecoder.googlemap.demo.R;
+import com.reversecoder.googlemap.demo.util.MarkerManager;
 import com.reversecoder.googlemap.demo.util.ReceiverManager;
 
+/**
+ * @author Md. Rashadul Alam
+ */
 public abstract class BaseMapActivity extends AppCompatActivity implements
         LocationListener,
         GoogleApiClient.ConnectionCallbacks,
@@ -61,12 +69,18 @@ public abstract class BaseMapActivity extends AppCompatActivity implements
     //abstract methods
     public abstract void onGoogleClientApiConnected();
 
+    public abstract void onUserLocationChanged(Location location);
+
     private PlaceSelectionListener mPlaceSelectionListener;
     private GoogleMap placeSearchGoogleMap;
 
     private boolean isRequestedForPermission = false;
     private boolean isRequestedForPlaceSearch = false;
     private boolean isRequestedForLocationSetting = false;
+
+    public Marker mCurrentLocationMarker;
+    private BitmapDescriptor mMarkerIcon;
+    public Location mLastLocation;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -80,6 +94,8 @@ public abstract class BaseMapActivity extends AppCompatActivity implements
         } else {
             Log.d("onCreate", "Google Play Services available.");
             receiverManager = ReceiverManager.init(BaseMapActivity.this);
+
+            mMarkerIcon = MarkerManager.vectorToBitmap(BaseMapActivity.this, R.drawable.marker_black_star, 20);
         }
     }
 
@@ -142,6 +158,30 @@ public abstract class BaseMapActivity extends AppCompatActivity implements
     @Override
     public void onStop() {
         super.onStop();
+
+    }
+
+    /*************************************************
+     * LocationListener
+     * ***********************************************/
+
+    @Override
+    public void onLocationChanged(Location location) {
+
+        // Update last location the the new location
+        mLastLocation = location;
+        onUserLocationChanged(location);
+
+//        // Remove the old current marker
+//        if (mCurrentLocationMarker != null) {
+//            mCurrentLocationMarker.remove();
+//        }
+
+        // Place current location marker.
+//        LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
+//        MarkerOptions markerOptions = MarkerManager.getMarkerOptions(latLng, "That's you",  mMarkerIcon);
+//        mCurrentLocationMarker = mMap.addMarker(markerOptions);
+
 
     }
 

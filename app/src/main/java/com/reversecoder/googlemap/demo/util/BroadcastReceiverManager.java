@@ -12,19 +12,19 @@ import java.util.List;
 /**
  * @author Md. Rashadul Alam
  */
-public class ReceiverManager {
+public class BroadcastReceiverManager {
 
     private static List<BroadcastReceiver> receivers = new ArrayList<BroadcastReceiver>();
-    private static ReceiverManager ref;
+    private static BroadcastReceiverManager ref;
     private Context context;
 
-    private ReceiverManager(Context context) {
+    private BroadcastReceiverManager(Context context) {
         this.context = context;
     }
 
-    public static synchronized ReceiverManager init(Context context) {
+    public static synchronized BroadcastReceiverManager init(Context context) {
         if (ref == null) {
-            ref = new ReceiverManager(context);
+            ref = new BroadcastReceiverManager(context);
         }
         return ref;
     }

@@ -46,7 +46,7 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.reversecoder.googlemap.demo.R;
 import com.reversecoder.googlemap.demo.util.MarkerManager;
-import com.reversecoder.googlemap.demo.util.ReceiverManager;
+import com.reversecoder.googlemap.demo.util.BroadcastReceiverManager;
 
 /**
  * @author Md. Rashadul Alam
@@ -64,7 +64,7 @@ public abstract class BaseMapActivity extends AppCompatActivity implements
     private static final int PERMISSIONS_REQUEST_LOCATION = 3;
     private static final String BROADCAST_ACTION = "android.location.PROVIDERS_CHANGED";
     private static final int INTENT_PLACE_SEARCH = 2; // For places search
-    ReceiverManager receiverManager;
+    BroadcastReceiverManager receiverManager;
 
     //abstract methods
     public abstract void onGoogleClientApiConnected();
@@ -93,7 +93,7 @@ public abstract class BaseMapActivity extends AppCompatActivity implements
             finish();
         } else {
             Log.d("onCreate", "Google Play Services available.");
-            receiverManager = ReceiverManager.init(BaseMapActivity.this);
+            receiverManager = BroadcastReceiverManager.init(BaseMapActivity.this);
 
             mMarkerIcon = MarkerManager.vectorToBitmap(BaseMapActivity.this, R.drawable.marker_black_star, 20);
         }

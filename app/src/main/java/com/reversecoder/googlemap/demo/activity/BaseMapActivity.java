@@ -78,7 +78,7 @@ public abstract class BaseMapActivity extends AppCompatActivity implements
     private boolean isRequestedForPlaceSearch = false;
     private boolean isRequestedForLocationSetting = false;
 
-    public Marker mCurrentLocationMarker;
+//    public Marker mCurrentLocationMarker;
     private BitmapDescriptor mMarkerIcon;
     public Location mLastLocation;
 
@@ -95,7 +95,7 @@ public abstract class BaseMapActivity extends AppCompatActivity implements
             Log.d("onCreate", "Google Play Services available.");
             receiverManager = BroadcastReceiverManager.init(BaseMapActivity.this);
 
-            mMarkerIcon = MarkerManager.vectorToBitmap(BaseMapActivity.this, R.drawable.marker_black_star, 20);
+//            mMarkerIcon = MarkerManager.vectorToBitmap(BaseMapActivity.this, R.drawable.marker_black_star, 20);
         }
     }
 

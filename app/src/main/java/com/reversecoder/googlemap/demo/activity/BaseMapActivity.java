@@ -358,6 +358,7 @@ public abstract class BaseMapActivity extends AppCompatActivity implements
                 // All location settings are satisfied. The client can initialize location
                 // requests here.
                 updateStatus("GPS is Enabled in your device.");
+                onGoogleClientApiConnected();
                 break;
             case LocationSettingsStatusCodes.RESOLUTION_REQUIRED:
                 isRequestedForLocationSetting = true;
@@ -470,6 +471,7 @@ public abstract class BaseMapActivity extends AppCompatActivity implements
                         Log.e("Settings", "Result OK");
                         updateStatus("GPS is Enabled in your device.");
                         //startLocationUpdates();
+                        onGoogleClientApiConnected();
                         break;
                     case RESULT_CANCELED:
                         Log.e("Settings", "Result Cancel");
